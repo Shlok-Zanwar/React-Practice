@@ -4,6 +4,7 @@ import App from './App';
 import { createStore } from 'redux';
 import allReducer from './Reducers/Combined'
 import { Provider } from 'react-redux';
+import Temp from './Temp';
 
 const store = createStore(
   allReducer,
@@ -14,7 +15,8 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      {/* <App /> */}
+      <Temp />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
