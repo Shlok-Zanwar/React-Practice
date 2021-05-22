@@ -79,11 +79,6 @@ export default function Timeline() {
     }, [marks])
 
 
-    const handleClick = () => {
-		console.log(dateTimeReducer);
-		// console.log(ImageFunctions());
-    }
-
     const handleTimeChange = (e, newValue) => {		// New Value of timeline
         setCurrSelectedTick(newValue);
 		// Setting to to redux state

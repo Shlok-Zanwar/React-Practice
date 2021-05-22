@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,6 +10,7 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
 import { changeChannelDetails } from '../../Actions/PannelDetailsAction';
+
 
 export default function ChannelOptions() {
     const [open, setOpen] = React.useState(false);

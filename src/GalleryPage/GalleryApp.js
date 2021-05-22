@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setImageDetails } from '../Actions/ImageDetailsActions';
 import Timeline from './DateTime/Timeline';
 import AllChannelsTable from './FullDayGrid/AllChannels';
+import HandleRequests from './HandleRequests';
 
 function GalleryApp() {
 
     const pannelDetailsReducer = useSelector(state => state.pannelDetailsReducer);
     const imageDetailsReducer = useSelector(state => state.imageDetailsReducer);
-    const dateTimeReducer = useSelector(state => state.dateTimeReducer);
+    // const dateTimeReducer = useSelector(state => state.dateTimeReducer);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -16,8 +17,12 @@ function GalleryApp() {
         const channels = pannelDetailsReducer.channels;
         const newImageDetailsState = {...imageDetailsReducer};
 
+        // Making pannelDetails Json
         if(!newImageDetailsState[pannelId]){
             newImageDetailsState[pannelId] = {};
+        }
+        if(!newImageDetailsState[pannelId].requests){
+            newImageDetailsState[pannelId].requests = [];
         }
         for(var channel of channels){
             if(!newImageDetailsState[pannelId][channel.channelId]){
@@ -58,11 +63,6 @@ function GalleryApp() {
     }
 
 
-    // For axios request 
-    // useEffect(() => {
-
-    // }, [dateTimeReducer])
-
     const temp = e => {
         console.log("Temp");
         const newDetails = require("./Functions/Data.json");
@@ -77,6 +77,7 @@ function GalleryApp() {
             <button onClick={temp} >Click Me</button>
             <AllChannelsTable />
             <Timeline />
+            <HandleRequests />
         </div>
     )
 }

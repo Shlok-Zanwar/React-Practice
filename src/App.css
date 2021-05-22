@@ -78,6 +78,8 @@ code {
   width:max-content;
   height: 55px;
   max-height: 60px;
+  /* position: fixed; */
+  /* top: 0; */
 }
 
 /* Ratio if 5:6 */
