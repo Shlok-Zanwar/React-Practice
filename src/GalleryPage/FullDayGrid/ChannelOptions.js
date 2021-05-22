@@ -6,8 +6,10 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import OptionsComponent from './OptionsComponent';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
+import { changeChannelDetails } from '../../Actions/PannelDetailsAction';
 
 export default function ChannelOptions() {
     const [open, setOpen] = React.useState(false);
@@ -19,19 +21,28 @@ export default function ChannelOptions() {
         setOpen(true);
     };
 
-    const handleClose = () => {
-        console.log("hi")
+    const handleSaveAndClose = () => {
+        dispatch(changeChannelDetails(channelDetails));
         setOpen(false);
     };
+
+    const handleCheckBoxChange = e => {
+        var newDetails = channelDetails.map(channel => {
+            if(channel.channelId === e.target.id){ 
+                channel.show = !channel.show;
+            }
+            return channel;
+        });
+        setChannelDetails(newDetails);
+    }
 
     return (
         <div>
         <button variant="outlined" color="primary" onClick={handleClickOpen}>
-            Open alert dialog
+            Settings
         </button>
         <Dialog
             open={open}
-            onClose={handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
@@ -42,12 +53,19 @@ export default function ChannelOptions() {
             </DialogContentText>
 
             <FormGroup>
-                <OptionsComponent channelDetails={channelDetails} setChannelDetails={setChannelDetails} />
+                {
+                    channelDetails.map(channel => (
+                        <FormControlLabel key={channel.channelId}
+                            control={<Checkbox checked={channel.show} onChange={handleCheckBoxChange} name="gilad" id={channel.channelId} key={channel.channelId} />}
+                            label={channel.channelName}
+                        />
+                    ))
+                }
             </FormGroup>
 
             </DialogContent>
             <DialogActions>
-            <Button onClick={handleClose} color="primary" autoFocus>
+            <Button onClick={handleSaveAndClose} color="primary" autoFocus>
                 Save and Close
             </Button>
             </DialogActions>
