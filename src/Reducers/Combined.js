@@ -1,10 +1,12 @@
-import countReducer from './Counter'
-import loggedReducer from './IsLogged'
 import { combineReducers } from "redux";
+import dateTimeReducer from "./DateTimeReducer"
+import pannelDetailsReducer from './PannelDetailsReducer'
+import imageDetailsReducer from './ImageDetailsReducer'
 
-const allReducer = combineReducers({
-    countReducer,
-    loggedReducer
+const allReducers = combineReducers({
+    dateTimeReducer,
+    pannelDetailsReducer,
+    imageDetailsReducer
 })
 
-export default allReducer;
+export default allReducers;
