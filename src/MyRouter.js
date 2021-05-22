@@ -1,6 +1,5 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Example } from './Example';
 import GalleryApp from './GalleryPage/GalleryApp';
 
 function MyRouter() {
@@ -9,16 +8,9 @@ function MyRouter() {
         <Router>
             <Switch>
                 <Route path="/shlok" >
-                    <div>
-                    <Example />
-                    </div>
                 </Route>
                 <Route path="/nihar" >
-                    <div>
-                        <>
-                            <GalleryApp />
-                        </>
-                    </div>
+                    <GalleryApp />
                 </Route>
                 <Route path="/" >
                     <div>
