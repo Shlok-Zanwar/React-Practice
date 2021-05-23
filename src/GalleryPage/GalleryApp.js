@@ -22,7 +22,7 @@ function GalleryApp() {
             newImageDetailsState[pannelId] = {};
         }
         if(!newImageDetailsState[pannelId].requests){
-            newImageDetailsState[pannelId].requests = [];
+            newImageDetailsState[pannelId].requests = {};
         }
         for(var channel of channels){
             if(!newImageDetailsState[pannelId][channel.channelId]){
@@ -35,9 +35,9 @@ function GalleryApp() {
     
 
     const addNewImages = (newData) => {
-        const newImageDetailsState = {...imageDetailsReducer};
+        var newImageDetailsState = {...imageDetailsReducer};
         try {
-            var i = 0, time;
+            var time;
             for(let detail of newData){
                 time = (detail.datetime_local).substring(0, 10) + "-" + (detail.datetime_local).substring(11, 13);
                 if(!newImageDetailsState[detail.panel_no][detail.channel_no][time]){
@@ -77,7 +77,7 @@ function GalleryApp() {
             <button onClick={temp} >Click Me</button>
             <AllChannelsTable />
             <Timeline />
-            <HandleRequests />
+            <HandleRequests addNewImages={addNewImages} />
         </div>
     )
 }

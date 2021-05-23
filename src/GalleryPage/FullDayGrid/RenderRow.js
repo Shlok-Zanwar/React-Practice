@@ -15,9 +15,9 @@ function RenderRow({pannelId, channelId, keysToRender}) {
         }
     }
 
-    return keysToRender.map(key => (
-        <div className="channel-cell">
-            <RenderIndividual arr={keyDetails(key)} />
+    return keysToRender.map((key, index) => (
+        <div className="channel-cell" key={index} >
+            <RenderIndividual arr={keyDetails(key)} imagesReceived={imageDetailsReducer[pannelId].requests[key]} />
         </div>
     ))
 }

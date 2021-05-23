@@ -4,3 +4,10 @@ export const changeChannelDetails = (details) => {
         payload: details
     }
 }
+
+export const changePannelDetails = (details) => {
+    return {
+        type: "CHANGE_PANNEL_DETAILS",
+        payload: details
+    }
+}

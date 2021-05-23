@@ -36,7 +36,7 @@ function AllChannelsTable() {
 
     useEffect(() => {
         createNewKeys();
-    }, [dateTimeReducer.selectedTime])
+    }, [dateTimeReducer])
 
     useEffect(() => {
         createNewKeys();
@@ -52,20 +52,20 @@ function AllChannelsTable() {
         return [date, time];
     }
 
-    const renderTimeHeadings = keysToRender.map(key => {
+    const renderTimeHeadings = keysToRender.map((key, index) => {
         var temp = keyToTime(key)
         return (
-            <div className="channel-cell">
+            <div className="channel-cell" key={index}>
                 {temp[0]} <br /> {temp[1]} 
             </div>
         )
     })
 
 
-    const mapChannnels = pannelDetailsReducer.channels.map(channel => {
+    const mapChannnels = pannelDetailsReducer.channels.map((channel, index) => {
         if(channel.show){
             return (
-                <div className="channel-row">
+                <div className="channel-row" key={index}>
                     <div className="channel-cell channel-name-cell">{channel.channelName}</div>
                     <RenderRowWise pannelId={pannelDetailsReducer.pannelId} channelId={channel.channelId} keysToRender={keysToRender} />
                 </div>

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function RenderIndividual({arr}) {
+function RenderIndividual({arr, imagesReceived}) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const [index, setIndex] = useState(0);
@@ -42,15 +42,17 @@ function RenderIndividual({arr}) {
         setOpen(true);
     };
 
-    return arr.length === 0 ? (<WaveLoading size="large" color="rgba(255, 118, 20, 1)" />) : (
+    // 
+
+    return imagesReceived === true ? ( arr.length === 0 ? (<div>No Images</div>) : (
         <>
-            <img src={arr[0].url} className="small-grid-images" style={{cursor: 'zoom-in' }} onClick={handleOpen} />
+            <img src={arr[0].url} alt={arr[0].url} className="small-grid-images" style={{cursor: 'zoom-in' }} onClick={handleOpen} />
             
             <Backdrop className={classes.backdrop} open={open}>
                 <div style={{position: 'absolute', top: '48%', left: '1%', cursor: 'pointer'}}>
                     <NavigateBeforeIcon style={{fontSize: "90px"}} onClick={handlePrev} />
                 </div>
-                <img src={arr[index].url} className="backdrop-image"  />
+                <img src={arr[index].url} alt={arr[0].url} className="backdrop-image"  />
                 <div style={{position: 'absolute', top: '48%', right: '1%', cursor: 'pointer'}}>
                     <NavigateNextIcon style={{fontSize: "90px"}} onClick={handleNext} />
                 </div>
@@ -59,7 +61,7 @@ function RenderIndividual({arr}) {
                     Image {index + 1} / {arr.length}
                 </div>
             </Backdrop>
-        </>
+        </> )) : (<WaveLoading size="large" color="rgba(255, 118, 20, 1)" />
     )
 }
 

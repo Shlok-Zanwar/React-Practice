@@ -56,6 +56,9 @@ const pannelDetailsReducer = (state = createState(), action) => {
             newState.channels = action.payload;
             return newState;
 
+        case 'CHANGE_PANNEL_DETAILS':
+            return action.payload;
+
         default:
             return state;
     }

@@ -82,7 +82,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MyNavbar() {
   const classes = useStyles();
-  const theme = useTheme();
+  // const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
