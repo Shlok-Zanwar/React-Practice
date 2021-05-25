@@ -17,7 +17,7 @@ function PannelSelection() {
 
     const handleSubmit = async e => {
         dispatch({type: "SET_LOADING"})
-        var url = "http://192.168.2.53:8081/get/distinctChannel";
+        var url = "/get/distinctChannel";
         setDisableButton(true);
         await axios.get(url, {
             params: {
@@ -43,7 +43,7 @@ function PannelSelection() {
         })
         .catch(err => {
             console.log(err);
-            enqueueSnackbar(err, {
+            enqueueSnackbar(err.message, {
                 variant: 'error',
             })
             dispatch(changePannelDetails({pannelId: "", channels: []}));

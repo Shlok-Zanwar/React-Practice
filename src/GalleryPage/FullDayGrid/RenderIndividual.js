@@ -72,7 +72,7 @@ function RenderIndividual({arr, imagesReceived}) {
                         Image {index + 1} / {arr.length}
                     </div>
                     <div style={{position: 'absolute', backgroundColor: "#fff", borderRadius: "8px", bottom: "2%", left: "42%", fontSize: "35px", cursor: "pointer", color: "red"}} >
-                        {keyToTime(arr[index].time)}
+                    &nbsp; {keyToTime(arr[index].time)} &nbsp;
                     </div>
                 </Backdrop>
                 )

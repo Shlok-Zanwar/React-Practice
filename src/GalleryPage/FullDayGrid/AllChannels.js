@@ -79,7 +79,7 @@ function AllChannelsTable() {
     return (
         <div className="channels-outer-div">
             <div className="channel-time-row">
-                <div className="channel-cell channel-name-cell" style={{border: '2px solid red'}} >
+                <div className="channel-cell channel-name-cell" >
                     <ChannelOptions />
                 </div>
                 {renderTimeHeadings}

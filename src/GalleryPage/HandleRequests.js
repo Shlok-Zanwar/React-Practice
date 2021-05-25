@@ -78,7 +78,7 @@ function HandleRequests({addNewImages}) {
         // console.log("New Requests", data.requestsToMake);
         if((data.requestsToMake).length > 0){
             var url;
-            url = "http://192.168.2.53:8081/metadata";
+            url = "/metadata";
             // console.log("url", );
             axios.get(url, {
                 params: {
@@ -93,7 +93,7 @@ function HandleRequests({addNewImages}) {
                 })
                 .catch(err => {
                     console.log(err);
-                    enqueueSnackbar(err, {
+                    enqueueSnackbar(err.message, {
                         variant: 'error',
                     })
                 })

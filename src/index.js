@@ -7,7 +7,8 @@ import { Provider } from 'react-redux';
 import axios from 'axios';
 import { SnackbarProvider } from 'notistack';
 
-axios.defaults.baseURL = 'shshshssh';
+// Shoukd end without '/'
+axios.defaults.baseURL = 'http://api.smart-iam.com/api/image-store';
 
 const store = createStore(
   allReducer,
