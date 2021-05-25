@@ -1,6 +1,7 @@
 import axios from 'axios'
 import moment from 'moment';
-import React, { useEffect } from 'react'
+import { useSnackbar } from 'notistack';
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setImageDetails } from '../Actions/ImageDetailsActions';
 import { changePannelDetails } from '../Actions/PannelDetailsAction';
@@ -10,6 +11,7 @@ function HandleRequests({addNewImages}) {
     const imageDetailsReducer = useSelector(state => state.imageDetailsReducer);
     const dateTimeReducer = useSelector(state => state.dateTimeReducer);
     const pannelDetailsReducer = useSelector(state => state.pannelDetailsReducer);
+    const { enqueueSnackbar } = useSnackbar();
     
 
     const getTimeForRequest = () => {
@@ -17,9 +19,10 @@ function HandleRequests({addNewImages}) {
             return false;
         }
 
+        // check (selectedTime or timelineStart)
         var startTime = (dateTimeReducer.selectedTime).substring(0, 10) + "T" + (dateTimeReducer.selectedTime).substring(11, 13)  + ":00:00+05:30";
-        var endTime = moment(startTime).add(24, 'hours').format();
-        startTime = moment(startTime).subtract(6, 'hours').format();
+        var endTime = moment(startTime).add(24, 'hours').format();                  // 24 => from currTime to next 24 hrs (change to any num)
+        startTime = moment(startTime).subtract(6, 'hours').format();                // 6 => from 6 hrs back to currTime
         var requestsToMake = [];
         var keysToAdd = [];
         var startTime_itr = startTime ;
@@ -60,36 +63,45 @@ function HandleRequests({addNewImages}) {
         dispatch(setImageDetails(newImageDetailsState));
     }
 
+    const [firstRender, setFirstRender] = useState(1);
     useEffect(() => {
+        // This if is to prevent multiple requests at first time
+        if(firstRender === 1){
+            setFirstRender(2);
+            return;
+        }
         var data = getTimeForRequest();
-        if(!data){
+        if(!data){      // Error handling
             return;
         }
         var keysToAdd = data.keysToAdd;
-        console.log("new Requests", data.requestsToMake);
+        // console.log("New Requests", data.requestsToMake);
         if((data.requestsToMake).length > 0){
             var url;
-            url="www......../ ?pannel=" + pannelDetailsReducer.pannelId + "requests=" + data.requestsToMake;
-            url = "https://shlok-m-server.herokuapp.com/blogs/toxicbot"
-            console.log("url", data.requestsToMake);
-            axios.get(url)
+            url = "http://192.168.2.53:8081/metadata";
+            // console.log("url", );
+            axios.get(url, {
+                params: {
+                    panel_no: pannelDetailsReducer.pannelId,
+                    from_dt: data.requestsToMake[0].start,
+                    to_dt: data.requestsToMake[0].end
+                }
+              })
                 .then(res => {
-                    console.log(res.data);
-                    // addNewImages(res.data.data);
+                    addNewImages(res.data.data);
                     addKeys(keysToAdd);
                 })
                 .catch(err => {
                     console.log(err);
+                    enqueueSnackbar(err, {
+                        variant: 'error',
+                    })
                 })
         }
     }, [dateTimeReducer])
 
-    const handleClick = e => {
-        // var requestsToMake = getTimeForRequest();
-        console.log(imageDetailsReducer);
-    }
 
-    return (<div onClick={handleClick}>Click</div>)
+    return <></>
 }
 
 export default HandleRequests

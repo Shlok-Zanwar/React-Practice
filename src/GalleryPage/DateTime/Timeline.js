@@ -31,8 +31,10 @@ export default function Timeline() {
 
     const [currSelectedTick, setCurrSelectedTick] = useState(0);
     const dateTimeReducer = useSelector(state => state.dateTimeReducer);
+    const pannelDetailsReducer = useSelector(state => state.pannelDetailsReducer);
     const dispatch = useDispatch();
 	const slotsInHour = 4;						// no of ticks between 1 hr 4 => 0, 15, 30, 24
+	const [temp, setTemp] = useState(1);
 
     const makeTimelineMarks = () => {
 		var marks = [];
@@ -70,7 +72,12 @@ export default function Timeline() {
 
     // This will re-render the timelime and timeline Marks everytime a new date is set
     useEffect(() => {
-        setMarks(makeTimelineMarks);
+		// This if is to prevent multiple requests 1st time
+		if(temp === 1){
+			setTemp(2);
+			return;
+		}
+        setMarks(makeTimelineMarks());
     }, [dateTimeReducer.timelineStart])
 
 	// This is for handling date change

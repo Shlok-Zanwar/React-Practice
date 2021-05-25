@@ -78,13 +78,14 @@ function AllChannelsTable() {
 
     return (
         <div className="channels-outer-div">
-            <div className="channels-table-div">
-                <div className="channel-time-row">
-                    <div className="channel-cell channel-name-cell" style={{border: '2px solid red'}} >
-                        <ChannelOptions />
-                    </div>
-                    {renderTimeHeadings}
+            <div className="channel-time-row">
+                <div className="channel-cell channel-name-cell" style={{border: '2px solid red'}} >
+                    <ChannelOptions />
                 </div>
+                {renderTimeHeadings}
+            </div> 
+            <div className="channels-table-div">
+                
                 {mapChannnels}
             </div>
         </div>

@@ -17,6 +17,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import MyRouter from './MyRouter';
+import PannelSelection from './PannelSelection';
+import { useSelector } from 'react-redux';
 
 const drawerWidth = 200;
 
@@ -84,6 +86,7 @@ export default function MyNavbar() {
   const classes = useStyles();
   // const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const pannelDetailsReducer = useSelector(state => state.pannelDetailsReducer);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -113,7 +116,10 @@ export default function MyNavbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Persistent drawer
+            Pannel : {pannelDetailsReducer.pannelId}
+          </Typography>
+          <Typography style={{position: 'absolute', right: "1%"}} noWrap>
+            <PannelSelection />
           </Typography>
         </Toolbar>
       </AppBar>

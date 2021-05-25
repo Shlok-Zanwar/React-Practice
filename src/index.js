@@ -4,6 +4,10 @@ import App from './App';
 import { createStore } from 'redux';
 import allReducer from './Reducers/Combined'
 import { Provider } from 'react-redux';
+import axios from 'axios';
+import { SnackbarProvider } from 'notistack';
+
+axios.defaults.baseURL = 'shshshssh';
 
 const store = createStore(
   allReducer,
@@ -14,7 +18,16 @@ const store = createStore(
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <SnackbarProvider
+        maxSnack={2}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        autoHideDuration={5000}
+      >
+        <App />
+      </SnackbarProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

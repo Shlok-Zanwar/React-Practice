@@ -1,6 +1,6 @@
 const createState = () => {
     var state = {
-        pannelId: "450001",
+        pannelId: "500002",
         channels: [
             {
                 "channelId": "1",
@@ -41,8 +41,57 @@ const createState = () => {
                 "channelId": "8",
                 "channelName": "Channel 8",
                 "show": true
-            }
+            },
+            {
+                "channelId": "9",
+                "channelName": "Channel 9",
+                "show": true
+            },
+            {
+                "channelId": "10",
+                "channelName": "Channel 10",
+                "show": true
+            },
+            {
+                "channelId": "11",
+                "channelName": "Channel 11",
+                "show": true
+            },
+            {
+                "channelId": "12",
+                "channelName": "Channel 12",
+                "show": true
+            },
+            {
+                "channelId": "13",
+                "channelName": "Channel 13",
+                "show": true
+            },
+            {
+                "channelId": "14",
+                "channelName": "Channel 14",
+                "show": true
+            },
+            {
+                "channelId": "15",
+                "channelName": "Channel 15",
+                "show": true
+            },
+            {
+                "channelId": "16",
+                "channelName": "Channel 16",
+                "show": true
+            },
+            {
+                "channelId": "17",
+                "channelName": "Channel 17",
+                "show": true
+            },
         ]
+    }
+    state = {
+        pannelId: "",
+        channels: [],
     }
     return state;
 }

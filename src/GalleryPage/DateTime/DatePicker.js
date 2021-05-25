@@ -44,6 +44,7 @@ export default function MaterialUIPickers() {
 				value={selectedDate}
 				onChange={handleDateChange}
 				maxDate={new Date()}
+				style={{maxWidth: '150px'}}
 				KeyboardButtonProps={{
 					'aria-label': 'change date',
 				}}
